@@ -17,13 +17,26 @@
       h1 {
         font-size: 2em;
       }
+      button {
+        font-size: 30px;
+      }
+      #back {
+        float: left;
+      }
+      #forward {
+        float: right;
+      }
     </style>
   </head>
   <body>
     <h1>Jump Scratch Game</h1>
-    <p>1. Delete the Cat Spring</p>
-    <img src="step1-delete-cat.gif" />
-    <p>2. Create the main background</p>
+    <p id="info">1. Delete the Cat Spring</p>
+    <img id="image" src="step1-delete-cat.gif" />
+    <button id="back">Back</button> <button id="forward">Forward</button>
+    <br /><br />
+    <br /><br />
+
+    <!-- <p>2. Create the main background</p>
     <img src="step2-create-background.gif" />
     <p>3. Choose the dino sprite.</p>
     <img src="step3-choose-character.gif" />
@@ -46,7 +59,7 @@
     <p>12. Create the game over screen.</p>
     <img src="step12-end-game-backdrop.gif" />
     <p>13. Make it so the game end if the dinosaur touches the building.</p>
-    <img src="step13-game-over-logic.gif" />
+    <img src="step13-game-over-logic.gif" /> -->
 
     <h2>Challenges</h2>
     <ul>
@@ -54,5 +67,77 @@
       <li>Set the points to 0 when the game starts.</li>
       <li>Increase the number of points every time a building disappears.</li>
     </ul>
+    <script>
+      const steps = [
+        {
+          img: 'step1-delete-cat.gif',
+          step: 'Delete the Cat Spring'
+        },
+        {
+          img: 'step2-create-background.gif',
+          step: 'Create the main background'
+        },
+        {
+          img: 'step3-choose-character.gif',
+          step: 'Choose the dino sprite.'
+        },
+        {
+          img: 'step4-rename-sprite-and-flip.gif',
+          step: 'Rename and flip the dino sprite.'
+        },
+        {
+          img: 'step5-create-building.gif',
+          step: 'Rename and flip the dino sprite.'
+        },
+        {
+          img: 'step6-create-ground.gif',
+          step: 'Create the ground sprite.'
+        },
+        {
+          img: 'step7-move-ground.gif',
+          step: 'Move the ground sprite.'
+        },
+        {
+          img: 'step8-building-part-1.gif',
+          step: 'Create clones of the building.'
+        },
+        {
+          img: 'step9-building-part-2.gif',
+          step: 'Make the building move across the screen.'
+        },
+        {
+          img: 'step10-dino-part-1.gif',
+          step: 'Make the dinosaur move left and right.'
+        },
+        {
+          img: 'step11-dino-part-2.gif',
+          step: 'Make the dinosaur move left and right.'
+        },
+        {
+          img: 'step12-end-game-backdrop.gif',
+          step: 'Create the game over screen.'
+        },
+        {
+          img: 'step13-game-over-logic.gif',
+          step: 'Make it so the game end if the dinosaur touches the building.'
+        }
+      ];
+      let currentStep = 0;
+      document.getElementById('back').addEventListener('click', function() {
+        currentStep = currentStep <= 0 ? 0 : currentStep - 1;
+        setStep();
+      });
+      document.getElementById('forward').addEventListener('click', function() {
+        currentStep =
+          currentStep >= steps.length - 1 ? steps.length - 1 : currentStep + 1;
+        setStep();
+      });
+      const setStep = () => {
+        document.getElementById('info').innerText = `${currentStep + 1}. ${
+          steps[currentStep].step
+        }`;
+        document.getElementById('image').src = steps[currentStep].img;
+      };
+    </script>
   </body>
 </html>
